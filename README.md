@@ -13,9 +13,21 @@ A role-based project and task management system built for organizations to plan 
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Sequelize](https://img.shields.io/badge/Sequelize-52B0E7?style=flat&logo=sequelize&logoColor=white)](https://sequelize.org/)
 
-[Live Demo](#) · [Report Bug](#) · [Request Feature](#)
+**[🔗 Live App](https://task-forge-ebon.vercel.app)** · **[🔗 Live API](https://taskforge-production-87a9.up.railway.app)** · [Report Bug](#) · [Request Feature](#)
 
 </div>
+
+---
+
+## 🌐 Live Links
+
+| Resource | URL |
+|---|---|
+| **Live Application** | [https://task-forge-ebon.vercel.app](https://task-forge-ebon.vercel.app) |
+| **Backend API** | [https://taskforge-production-87a9.up.railway.app](https://taskforge-production-87a9.up.railway.app) |
+| **Frontend Hosting** | Vercel |
+| **Backend Hosting** | Railway |
+| **Database** | Neon (PostgreSQL, serverless) |
 
 ---
 
@@ -80,6 +92,11 @@ Built from scratch as a full-stack application with a clean, scalable architectu
 - Axios — API communication with interceptors
 - Lucide React — icon library
 
+**Deployment**
+- Frontend deployed on **Vercel**
+- Backend deployed on **Railway**
+- Database hosted on **Neon** (serverless PostgreSQL)
+
 ---
 
 ## 🏗️ Architecture
@@ -120,7 +137,7 @@ TaskForge/
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Getting Started (Local Development)
 
 ### Prerequisites
 - Node.js (v18+)
@@ -154,6 +171,15 @@ The API will run on `http://localhost:5000`.
 ```bash
 cd frontend
 npm install
+```
+
+Create a `.env` file in `frontend/`:
+
+```env
+VITE_API_URL=http://localhost:5000/api
+```
+
+```bash
 npm run dev
 ```
 
@@ -163,7 +189,7 @@ The app will run on `http://localhost:5173`.
 
 ## 🔑 Demo Credentials
 
-Use these accounts to explore each portal:
+Use these accounts on the [live app](https://task-forge-ebon.vercel.app) to explore each portal:
 
 | Role | Email | Password |
 |---|---|---|
