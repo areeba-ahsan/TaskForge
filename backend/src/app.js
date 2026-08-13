@@ -16,8 +16,8 @@ const app = express();
 // Middlewares
 app.use(cors({
   origin: [
-    'http://localhost:5173',              // local development
-    'https://your-vercel-url.vercel.app', // production frontend (baad mein update karenge)
+    'http://localhost:5173',           // local development
+    'https://task-forge-ebon.vercel.app', // production frontend
   ],
   credentials: true,
 }));
