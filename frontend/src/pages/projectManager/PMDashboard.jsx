@@ -1,0 +1,58 @@
+import { useState, useEffect } from 'react';
+import { getDashboardStats } from '../../api/dashboardApi';
+import Layout from '../../components/common/Layout';
+import Loader from '../../components/common/Loader';
+import { FolderKanban, CheckSquare, Clock, AlertCircle } from 'lucide-react';
+
+const StatCard = ({ icon: Icon, label, value, color }) => (
+  <div className="bg-white rounded-xl border border-slate-200 p-5">
+    <div className="flex items-center gap-3">
+      <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${color}`}>
+        <Icon size={20} />
+      </div>
+      <div>
+        <p className="text-2xl font-bold text-slate-900">{value}</p>
+        <p className="text-sm text-slate-500">{label}</p>
+      </div>
+    </div>
+  </div>
+);
+
+const PMDashboard = () => {
+  const [stats, setStats] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const response = await getDashboardStats();
+        setStats(response.data.data);
+      } catch (error) {
+        console.error('Failed to load dashboard stats', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchStats();
+  }, []);
+
+  if (loading) return <Layout><Loader /></Layout>;
+
+  return (
+    <Layout>
+      <div className="mb-6">
+        <h1 className="text-2xl font-bold text-slate-900">Project Manager Dashboard</h1>
+        <p className="text-slate-500 text-sm mt-1">Overview of your assigned projects</p>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <StatCard icon={FolderKanban} label="Assigned Projects" value={stats?.assignedProjects ?? 0} color="bg-indigo-100 text-indigo-600" />
+        <StatCard icon={Clock} label="Active Projects" value={stats?.activeProjects ?? 0} color="bg-blue-100 text-blue-600" />
+        <StatCard icon={CheckSquare} label="Pending Tasks" value={stats?.pendingTasks ?? 0} color="bg-amber-100 text-amber-600" />
+        <StatCard icon={AlertCircle} label="Upcoming Deadlines" value={stats?.upcomingDeadlines ?? 0} color="bg-red-100 text-red-600" />
+      </div>
+    </Layout>
+  );
+};
+
+export default PMDashboard;
