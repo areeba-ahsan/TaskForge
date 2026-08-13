@@ -14,7 +14,13 @@ const { notFound, errorHandler } = require('./middlewares/errorMiddleware');
 const app = express();
 
 // Middlewares
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:5173',              // local development
+    'https://your-vercel-url.vercel.app', // production frontend (baad mein update karenge)
+  ],
+  credentials: true,
+}));
 app.use(helmet());
 app.use(morgan('dev'));
 app.use(express.json());
